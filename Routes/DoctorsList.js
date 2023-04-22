@@ -6,6 +6,11 @@ const routes = [
         url: '/getdoctors/:organizationId',
         handler: doctorController.getDoctors
     },
+    {
+        method: 'POST',
+        url: '/addDoctor',
+        handler: doctorController.addDoctor
+    }
 ]
 
 module.exports = routes;

@@ -10,7 +10,7 @@ const doctorRoutes = require('./Routes/DoctorsList');
 app.register(cors, {
     origin: '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  });
+});
 
 const Doctor = require('./Models/doctors');
 const Organization = require('./Models/organization');
@@ -23,7 +23,6 @@ doctorRoutes.forEach((route, index)=>{
 
 Doctor.belongsToMany(Organization, { through: DoctorsByOrganization });
 Organization.belongsToMany(Doctor, { through: DoctorsByOrganization });
-
 
 sequelize.sync()
 .then(() => {
