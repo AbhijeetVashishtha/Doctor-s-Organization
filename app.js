@@ -1,14 +1,34 @@
-const app = require('fastify')();
+const app = require('fastify')({
+    logger: true
+});
+const sequelize = require('./util/database');
+const cors = require('fastify-cors');
 require('dotenv').config();
 
-app.get('/', (req,res) => {
-    res.send({message: 'Hello World'});
-});
+const doctorRoutes = require('./Routes/DoctorsList');
 
-app.listen({port: process.env.PORT || 3000},(err) => {
-    if(err)
-    {
-        console.log(err);
-    }
-    console.log('Server running on http://localhost:3000');
+app.register(cors, {
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  });
+
+const Doctor = require('./Models/doctors');
+const Organization = require('./Models/organization');
+const DoctorsByOrganization = require('./Models/organizationdoc');
+
+doctorRoutes.forEach((route, index)=>{
+    app.route(route);
 })
+
+
+Doctor.belongsToMany(Organization, { through: DoctorsByOrganization });
+Organization.belongsToMany(Doctor, { through: DoctorsByOrganization });
+
+
+sequelize.sync()
+.then(() => {
+    app.listen({port: process.env.PORT || 3000});
+})
+.catch((err) => {
+    console.log(err);
+});

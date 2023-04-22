@@ -10,7 +10,8 @@
   "author": "Abhijeet",
   "license": "ISC",
   "dependencies": {
-    "fastify": "^4.15.0",
+    "fastify": "^3.20.1",
+    "fastify-cors": "^6.1.0",
     "mysql2": "^3.2.3",
     "sequelize": "^6.31.0"
   },

@@ -10,11 +10,11 @@ const Doctors = sequelize.define('doctors', {
         primaryKey: true
     },
     firstname: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false
     },
     lastname: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false
     },
     Email: {
