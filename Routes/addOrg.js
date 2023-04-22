@@ -15,6 +15,11 @@ const routes = [
         method: 'PUT',
         url: '/editOrg/:orgId',
         handler: orgController.editOrg
+    },
+    {
+        method: 'DELETE',
+        url: '/deleteOrg/:orgId',
+        handler: orgController.deleteOrg
     }
 ];
 

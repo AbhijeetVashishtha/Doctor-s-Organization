@@ -3,7 +3,7 @@ const doctorController = require('../Controller/doctorList');
 const routes = [
     {
         method: 'GET',
-        url: '/getdoctors/:organizationId',
+        url: '/getdoctors/:orgId',
         handler: doctorController.getDoctors
     },
     {

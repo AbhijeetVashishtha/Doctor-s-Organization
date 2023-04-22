@@ -1,8 +1,9 @@
 function searchDoc(event) {
     event.preventDefault();
-    axios.get(`http://localhost:3000/getdoctors/${event.target.organisation.value}`)
+    const orgId = event.target.organisation.value;
+    axios.get(`http://localhost:3000/getdoctors/${orgId}`)
     .then((response) => {
-        console.log(response.doctors);
+        console.log(response.data.data);
         for(let i=0;i<response.data.data.length;i++)
         {
             showDoctorsOnScreen(response.data.data[i]);

@@ -4,17 +4,20 @@ const DoctorsByOrganization = require('../Models/organizationdoc');
 
 exports.getDoctors = async (req,res) => {
     try{
-        const { organizationId } = req.params;
-        console.log(organizationId);
+        const { orgId } = req.params;
+        // console.log('<<<<<<<', orgId);
         const doctors = await Doctor.findAll({
-        include: [{
-                model: Organization,
-                through: {
+            include: [{
+              model: Organization,
+              through: {
                 model: DoctorsByOrganization,
-                where: { organizationId },
-                },
+                where: { organizationId: orgId },
+                attributes: []
+              },
+              required: true
             }],
-        });
+          });
+        // console.log(doctors);
         if(doctors == 0)
         {
             return res.status(404).send({status:"404",message:'No Doctor Found'});;
@@ -42,7 +45,7 @@ exports.addDoctor = async (req,res) => {
             organizationId: orgName,
             doctorId: doctor.id,
         });
-        return res.send({
+        return res.status(200).send({
             status: "200",
             message: 'Doctor added successfully!',
             doctor: doctor,

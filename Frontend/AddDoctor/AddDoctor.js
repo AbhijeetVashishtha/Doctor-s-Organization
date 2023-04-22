@@ -17,6 +17,7 @@ function addDoc(event)
         document.getElementById('lastname').value = "";
         document.getElementById('email').value = "";
         document.getElementById('orgname').value = "";
+        window.location.reload();
         } else {
         console.log(err);
         }

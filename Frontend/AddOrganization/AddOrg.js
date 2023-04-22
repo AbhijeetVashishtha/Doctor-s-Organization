@@ -10,6 +10,7 @@ function addOrg(event){
         if(response.status == 200)
         {
             alert('Organization created successfully!');
+            window.location.reload();
             document.getElementById('name').value = "";
             document.getElementById('address').value = "";
         };
@@ -48,6 +49,20 @@ async function editOrg(orgId) {
             address: address
         }
         await axios.put(`http://localhost:3000/editOrg/${orgId}`, data)
+        .then((response) => {
+            alert(response.data.message);
+            window.location.reload();
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+    }
+}
+
+async function deleteOrg(orgId) {
+    const confirmDelete = confirm("Are you sure you want to delete this organization?");
+    if (confirmDelete) {
+        await axios.delete(`http://localhost:3000/deleteOrg/${orgId}`)
         .then((response) => {
             alert(response.data.message);
             window.location.reload();
