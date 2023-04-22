@@ -13,6 +13,10 @@ function addDoc(event)
     .then((response) => {
         if (response.status == 200) {
         console.log('Doctor added successfully!');
+        document.getElementById('firstname').value = "";
+        document.getElementById('lastname').value = "";
+        document.getElementById('email').value = "";
+        document.getElementById('orgname').value = "";
         } else {
         console.log(err);
         }

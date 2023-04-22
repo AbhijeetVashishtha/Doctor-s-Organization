@@ -28,3 +28,18 @@ exports.getAllOrg = async (req,res) => {
         return res.status(500).send({status:"500", message:"Something went wrong"});
     }
 }
+
+exports.editOrg = async (req,res) => {
+    try{
+        const { orgId } = req.params;
+        const { name, address } = req.body;
+        console.log(orgId);
+
+        const organization = await Organization.update({ name, address }, { where: { id: orgId } });
+        return res.status(200).send({ status: 'success', organization });
+    }
+    catch(err){
+        console.log(err);
+        return res.status(500).send({status:"500", message:"Something went wrong"});
+    }
+}

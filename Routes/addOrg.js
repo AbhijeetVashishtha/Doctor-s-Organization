@@ -10,6 +10,11 @@ const routes = [
         method: 'GET',
         url: '/getAllOrg',
         handler: orgController.getAllOrg
+    },
+    {
+        method: 'PUT',
+        url: '/editOrg/:orgId',
+        handler: orgController.editOrg
     }
 ];
 
